@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { COLLECTIONS } from './constants';
 import { CollectionId } from './types';
@@ -62,6 +62,39 @@ export default function App() {
   const [view, setView] = useState<ViewState>(savedState?.view ?? ViewState.HOME);
   const [activeCollectionId, setActiveCollectionId] = useState<CollectionId | null>(savedState?.activeCollectionId ?? null);
   const [currentPage, setCurrentPage] = useState<number>(savedState?.currentPage ?? 1);
+
+  /* History API Integration */
+  const isPopping = useRef(false);
+  const isFirstRun = useRef(true);
+
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      if (event.state) {
+        isPopping.current = true;
+        setView(event.state.view);
+        setActiveCollectionId(event.state.activeCollectionId);
+        setCurrentPage(event.state.currentPage);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      window.history.replaceState({ view, activeCollectionId, currentPage }, '');
+      return;
+    }
+
+    if (isPopping.current) {
+      isPopping.current = false;
+      return;
+    }
+
+    window.history.pushState({ view, activeCollectionId, currentPage }, '');
+  }, [view, activeCollectionId, currentPage]);
 
   useEffect(() => {
     localStorage.setItem('nazm_nav_state', JSON.stringify({ view, activeCollectionId, currentPage }));
