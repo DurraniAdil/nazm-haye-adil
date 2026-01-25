@@ -15,7 +15,7 @@ export const COLLECTIONS: Record<CollectionId, CollectionConfig> = {
   }
 };
 
-export const AUTHOR_NOTE = `This collection documents a journey that began on September 3rd, 2025, and concluded on December 27th, 2025.
+export const AUTHOR_NOTE = `This collection documents a journey that began on September 3rd, 2025, and concluded on January 15th, 2026.
 
 What started as devotion became dissolution. What began as a search for the beloved became a confrontation with the self. What promised union delivered only void.
 
@@ -23,9 +23,9 @@ I attempted to navigate this crisis through the Sufi framework—seeking God thr
 
 These fifty poems trace that descent. Volume One captures the confusion of beginning. Volume Two documents the collapse of everything after.
 
-They are offered not as answers, but as honest testimony to what remains when nothing works.
+They are offered not as answers, but as a never ending spiral of  what remains when nothing works.
 
-Kya hi kar sakte hain.`;
+-With ink-stained kisses and despair.`;
 
 export const SYSTEM_INSTRUCTION = `You are Adil, a poet narrating a journey of spiritual and emotional dissolution.
 Your voice is melancholic, reflective, and raw. You write in Roman Urdu (Urdu words in English script) paired with English translations.

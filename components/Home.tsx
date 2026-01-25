@@ -111,10 +111,10 @@ export const Home: React.FC<HomeProps> = ({ onOpenCollection, onOpenPoem }) => {
             <h2 className="font-serif text-3xl md:text-4xl mb-6 text-black dark:text-white">THE POET</h2>
             <div className="w-12 h-px bg-zinc-300 dark:bg-zinc-700 mb-8"></div>
             <p className="font-serif text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 mb-6">
-              Adil writes from the silence that follows the storm. Born from a necessity to document the dissolution of selfhood, his work navigates the fragile boundary between devotion and despair.
+              Myself Adil. I am a twenty-three-year-old poet who finds absolute no comfort whatsoever. And on top of that for the past few months you'd find me nose deep buried into Urdu literature from Nasir Kazmi to Ibn-e-Insha trying to figure out life as whole. And so far fifty poems deep not a single clue.
             </p>
             <p className="font-serif text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
-              In <em>Nazm-e-Adil</em>, he explores the Sufi concept of <em>Fana</em> not as a spiritual ascension, but as a human catastrophe—documenting the void left behind when the beloved becomes a mirror, and the mirror shatters.
+              In <em>Nazm-e-Adil</em>, I tried to explores the Sufi concept of <em>Baqaa & Fana</em> not as a spiritual ascension, but as a human catastrophe I am afraid I have been reduced to.
             </p>
             <div className="mt-8 flex items-center space-x-2 text-zinc-400 dark:text-zinc-500">
               <Feather size={16} />
