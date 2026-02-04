@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Poem } from '../types';
-import { Feather, ChevronLeft, ChevronRight } from './Icons';
+import { Feather, ChevronLeft, ChevronRight, Languages } from './Icons';
 import { useBookmarkStore } from '../store/bookmarkStore';
 import { useMarginaliaStore } from '../store/marginaliaStore';
 import { MarginaliaPanel } from './MarginaliaPanel';
@@ -36,11 +36,13 @@ export const PoemPage: React.FC<PoemPageProps> = ({ poem, pageNumber, totalPages
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isHoveringBookmark, setIsHoveringBookmark] = useState(false);
+  const [showTranslation, setShowTranslation] = useState(false);
 
   const { isBookmarked, toggleBookmark } = useBookmarkStore();
   const { hasNotes, getNotes } = useMarginaliaStore();
 
   const bookmarked = isBookmarked(poem.id);
+  const hasTranslation = poem.contentEn && poem.contentEn.length > 0;
 
   useEffect(() => {
     setInnerPage(1);
@@ -53,7 +55,8 @@ export const PoemPage: React.FC<PoemPageProps> = ({ poem, pageNumber, totalPages
     }
   }, [innerPage]);
 
-  const activeContent = poem.content;
+  const activeContent = showTranslation && hasTranslation ? poem.contentEn! : poem.content;
+  const activeTitle = showTranslation && poem.titleEn ? poem.titleEn : poem.title;
   const totalInnerPages = Math.ceil(activeContent.length / LINES_PER_PAGE);
   const hasPagination = totalInnerPages > 1;
 
@@ -90,12 +93,21 @@ export const PoemPage: React.FC<PoemPageProps> = ({ poem, pageNumber, totalPages
             {/* Header */}
             <header className="mb-10 text-center">
               <motion.div initial={{ opacity: 0, y: -15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}>
-                <div className="flex items-center justify-center mb-5 opacity-100">
-                  <img src="/media/logo.png" alt="Logo" className="w-6 h-6 object-contain opacity-80" />
-                </div>
+                {/* Translation Toggle Button - Replaces Logo */}
+                {hasTranslation && (
+                  <div className="flex items-center justify-center mb-5">
+                    <button
+                      onClick={() => setShowTranslation(!showTranslation)}
+                      className="p-2.5 bg-zinc-100/80 dark:bg-zinc-800/80 backdrop-blur-sm rounded-full shadow-sm text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-all hover:scale-105"
+                      title={showTranslation ? "Show Original (Roman Urdu)" : "Show English Translation"}
+                    >
+                      <Languages size={20} />
+                    </button>
+                  </div>
+                )}
 
                 <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl text-zinc-900 dark:text-zinc-100 mb-3 tracking-tight leading-tight font-light">
-                  {poem.title}
+                  {activeTitle}
                 </h2>
 
                 <div className="w-12 h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent mx-auto my-5"></div>

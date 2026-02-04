@@ -1,8 +1,10 @@
 export interface Poem {
   id: string;
   title: string;       // Original Title (Roman Urdu)
+  titleEn?: string;    // English Title
 
   content: string[];   // Original Content (Roman Urdu)
+  contentEn?: string[]; // English Translation
 
   date: string;
   context: string;

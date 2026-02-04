@@ -5,7 +5,9 @@ const processPoems = (collectionId: string, rawData: any[]): Poem[] => {
   return rawData.map((p, index) => ({
     id: `${collectionId}-${index + 1}`,
     title: p.title || 'Untitled',
+    titleEn: p.titleEn,
     content: (p.content && typeof p.content === 'string') ? p.content.split('\n') : [],
+    contentEn: (p.contentEn && typeof p.contentEn === 'string') ? p.contentEn.split('\n') : undefined,
     date: p.date || '',
     context: p.context || ''
   }));

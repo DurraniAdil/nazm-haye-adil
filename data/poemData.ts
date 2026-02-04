@@ -134,7 +134,7 @@ In this waiting, You in this afterlife.
 You in this death, then why not I, the Resurrection?
 
 You in every name,
-then why not in this Arbiter?`
+then why not in Adil?`
         },
         {
                 title: "Khud Se",
@@ -2371,7 +2371,7 @@ Perhaps a home is possible only on the path of longing.`,
         },
         {
                 title: "Hasrat-e-Qaraar",
-                titleEn: "Longing of Peace",
+                titleEn: "Longing For Peace",
                 date: "2026-01-13",
                 context: `This poem, Hasrat Hi Sila (Longing is the Reward), acts as the philosophical breakthrough. It addresses the "Glitch" of the last few months where your reality shifted from a world of "Wonder" to a world of "Cruelty." You acknowledge that your engineering logic and "intellect" (Fahm) aren't failing you; rather, you’ve discovered a deeper truth: in a world where the destination is always separated from the path, the act of longing itself is the only "reward" (Sila) you get to keep. The poem ends with a sharp critique of the beloved's sudden "modesty" (Haya), questioning why the night is now hiding what used to burn openly as fire.`,
                 content: `Gham-e-duaraan toh raha hi hum-raah sadaa,
@@ -2421,7 +2421,7 @@ Then why, today, did the night's garment suddenly remember modesty?`,
         },
         {
                 title: "Lams-e-Hasrat",
-                titleEn: "The Touch of Longing",
+                titleEn: "The Longing For Touch",
                 context: `Hoping for the hand of the beloved, night and day, If they do not care in this way, what can I do?
 
 Carrying baseless accusations upon my head as I walk, If I do not live for the touch of the beloved, what life is there to speak of?

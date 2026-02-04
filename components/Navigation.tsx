@@ -42,15 +42,16 @@ export const Navigation: React.FC<NavigationProps> = ({
             <>
               {/* Backdrop to close menu when clicking outside */}
               <div
-                className="fixed inset-0 z-40"
+                className="fixed inset-0 z-[60]"
                 onClick={() => setIsMenuOpen(false)}
+                onTouchStart={() => setIsMenuOpen(false)}
               />
 
               <motion.div
                 initial={{ opacity: 0, y: 10, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                className="absolute bottom-full left-0 mb-4 w-56 bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 shadow-xl rounded-lg overflow-hidden py-2 z-50"
+                className="absolute bottom-full left-0 mb-4 w-56 bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 shadow-xl rounded-lg overflow-hidden py-2 z-[70]"
               >
                 <button
                   onClick={() => {
