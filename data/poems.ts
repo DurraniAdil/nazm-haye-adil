@@ -1,5 +1,7 @@
 import { Poem, CollectionId } from '../types';
 import { nazmVol1Data, nazmVol2Data } from './poemData';
+import { nazmVol3Data } from './poemDataV3';
+import { nazmVol4Data } from './poemDataV4';
 
 const processPoems = (collectionId: string, rawData: any[]): Poem[] => {
   return rawData.map((p, index) => ({
@@ -16,10 +18,17 @@ const processPoems = (collectionId: string, rawData: any[]): Poem[] => {
 export const POEMS_DATA: Record<string, Poem[]> = {
   [CollectionId.ONE]: processPoems(CollectionId.ONE, nazmVol1Data),
   [CollectionId.TWO]: processPoems(CollectionId.TWO, nazmVol2Data),
+  [CollectionId.THREE]: processPoems(CollectionId.THREE, nazmVol3Data),
+  [CollectionId.FOUR]: processPoems(CollectionId.FOUR, nazmVol4Data),
 };
 
 export const getAllPoems = (): Poem[] => {
-  return [...POEMS_DATA[CollectionId.ONE], ...POEMS_DATA[CollectionId.TWO]];
+  return [
+    ...POEMS_DATA[CollectionId.ONE],
+    ...POEMS_DATA[CollectionId.TWO],
+    ...POEMS_DATA[CollectionId.THREE],
+    ...POEMS_DATA[CollectionId.FOUR],
+  ];
 };
 
 export const getPoem = (id: string): Poem | undefined => {

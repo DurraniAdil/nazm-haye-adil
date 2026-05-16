@@ -172,6 +172,12 @@ export default function App() {
     } else if (poemId.startsWith(CollectionId.TWO)) {
       targetColId = CollectionId.TWO;
       targetPage = parseInt(poemId.replace(`${CollectionId.TWO}-`, ''));
+    } else if (poemId.startsWith(CollectionId.THREE)) {
+      targetColId = CollectionId.THREE;
+      targetPage = parseInt(poemId.replace(`${CollectionId.THREE}-`, ''));
+    } else if (poemId.startsWith(CollectionId.FOUR)) {
+      targetColId = CollectionId.FOUR;
+      targetPage = parseInt(poemId.replace(`${CollectionId.FOUR}-`, ''));
     }
 
     if (targetColId) {

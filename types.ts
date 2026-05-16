@@ -13,6 +13,8 @@ export interface Poem {
 export enum CollectionId {
   ONE = 'collection-1',
   TWO = 'collection-2',
+  THREE = 'collection-3',
+  FOUR = 'collection-4',
 }
 
 export interface CollectionConfig {

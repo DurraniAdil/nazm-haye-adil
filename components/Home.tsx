@@ -29,26 +29,33 @@ const Section: React.FC<{ children: React.ReactNode; className?: string }> = ({ 
   );
 };
 
+const VOLUME_LABELS: Record<CollectionId, string> = {
+  [CollectionId.ONE]: 'Volume One',
+  [CollectionId.TWO]: 'Volume Two',
+  [CollectionId.THREE]: 'Volume Three',
+  [CollectionId.FOUR]: 'Volume Four',
+};
+
 export const Home: React.FC<HomeProps> = ({ onOpenCollection, onOpenPoem }) => {
   const allPoems = getAllPoems();
   const vol1Poems = allPoems.filter(p => p.id.startsWith(CollectionId.ONE));
   const vol2Poems = allPoems.filter(p => p.id.startsWith(CollectionId.TWO));
+  const vol3Poems = allPoems.filter(p => p.id.startsWith(CollectionId.THREE));
+  const vol4Poems = allPoems.filter(p => p.id.startsWith(CollectionId.FOUR));
 
-  const PoemList = ({ title, date, subtitle }: { title: string, date: string, subtitle: string }) => (
+  const poemsByVolume: Record<string, typeof allPoems> = {
+    vol1: vol1Poems,
+    vol2: vol2Poems,
+    vol3: vol3Poems,
+    vol4: vol4Poems,
+  };
+
+  const PoemList = ({ title, volKey, subtitle }: { title: string, volKey: string, subtitle: string }) => (
     <div className="mb-12 w-full text-left">
       <h3 className="font-serif text-2xl text-black dark:text-white mb-2">{title}</h3>
       <p className="font-sans text-xs tracking-widest uppercase text-zinc-500 dark:text-zinc-500 mb-6">{subtitle}</p>
       <div className="columns-1 md:columns-2 gap-8">
-        {date === 'vol1' ? vol1Poems.map((poem, i) => (
-          <button
-            key={poem.id}
-            onClick={() => onOpenPoem(poem.id)}
-            className="flex justify-between items-baseline border-b border-zinc-100 dark:border-zinc-800 pb-1 mb-3 hover:pl-2 transition-all cursor-pointer group w-full text-left break-inside-avoid"
-          >
-            <span className="font-serif text-lg text-zinc-600 dark:text-zinc-400 group-hover:text-black dark:group-hover:text-white transition-colors">{poem.title}</span>
-            <span className="font-sans text-[10px] text-zinc-400 dark:text-zinc-600 ml-4 shrink-0">{poem.date.split('-').reverse().map((part, i) => i === 2 ? part.slice(2) : part).join('/')}</span>
-          </button>
-        )) : vol2Poems.map((poem, i) => (
+        {(poemsByVolume[volKey] || []).map((poem, i) => (
           <button
             key={poem.id}
             onClick={() => onOpenPoem(poem.id)}
@@ -74,15 +81,15 @@ export const Home: React.FC<HomeProps> = ({ onOpenCollection, onOpenPoem }) => {
           Poems of Adil
         </p>
         <div className="font-sans text-xs tracking-[0.2em] uppercase text-zinc-400 dark:text-zinc-600 space-y-2">
-          <p>Volume One & Two</p>
-          <p>September 3 - January 15, 2026</p>
+          <p>Four Volumes</p>
+          <p>September 3, 2025 - March 13, 2026</p>
         </div>
       </Section>
 
       {/* SECTION 2: INTRO */}
       <Section className="bg-white dark:bg-zinc-950">
         <h2 className="font-serif text-3xl md:text-4xl mb-2 text-black dark:text-white">NAZM-E-ADIL</h2>
-        <p className="font-serif italic text-zinc-500 dark:text-zinc-400 mb-12">A Collection in Two Volumes</p>
+        <p className="font-serif italic text-zinc-500 dark:text-zinc-400 mb-12">A Collection in Four Volumes</p>
 
         <div className="space-y-12 max-w-xl">
           <div>
@@ -97,8 +104,20 @@ export const Home: React.FC<HomeProps> = ({ onOpenCollection, onOpenPoem }) => {
               In which the search continues, the framework collapses, and relationships dissolve into mirage.
             </p>
           </div>
+          <div>
+            <h3 className="font-bold font-serif text-xl mb-2 text-black dark:text-white">Volume III: The Yearning</h3>
+            <p className="font-serif text-zinc-600 dark:text-zinc-400">
+              In which the heart remembers, the beloved is pursued, and longing becomes the only language left.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-bold font-serif text-xl mb-2 text-black dark:text-white">Volume IV: The Reckoning</h3>
+            <p className="font-serif text-zinc-600 dark:text-zinc-400">
+              In which silence speaks, exhaustion settles, and the self confronts its final truths.
+            </p>
+          </div>
           <p className="font-serif italic text-zinc-400 dark:text-zinc-600 mt-8">
-            Fifty movements across five months
+            One hundred movements across seven months
           </p>
         </div>
       </Section>
@@ -140,7 +159,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenCollection, onOpenPoem }) => {
           ))}
           <div className="pt-8">
             <p>— Adil</p>
-            <p className="text-sm text-zinc-400 dark:text-zinc-500 italic mt-1">January 15, 2026</p>
+            <p className="text-sm text-zinc-400 dark:text-zinc-500 italic mt-1">March 13, 2026</p>
           </div>
         </div>
       </Section>
@@ -153,15 +172,31 @@ export const Home: React.FC<HomeProps> = ({ onOpenCollection, onOpenPoem }) => {
           <PoemList
             title="NAZM-E-ADIL: VOLUME ONE"
             subtitle="The Descent (September 3 - October 13, 2025)"
-            date="vol1"
+            volKey="vol1"
           />
 
           <div className="h-12"></div>
 
           <PoemList
             title="NAZM-E-ADIL: VOLUME TWO"
-            subtitle="The Void (October 16 - January 15, 2026)"
-            date="vol2"
+            subtitle="The Void (October 16 - January 28, 2026)"
+            volKey="vol2"
+          />
+
+          <div className="h-12"></div>
+
+          <PoemList
+            title="NAZM-E-ADIL: VOLUME THREE"
+            subtitle="The Yearning (January 18 - February 22, 2026)"
+            volKey="vol3"
+          />
+
+          <div className="h-12"></div>
+
+          <PoemList
+            title="NAZM-E-ADIL: VOLUME FOUR"
+            subtitle="The Reckoning (February 23 - March 13, 2026)"
+            volKey="vol4"
           />
         </div>
       </Section>
@@ -170,7 +205,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenCollection, onOpenPoem }) => {
       <Section className="bg-black dark:bg-zinc-900 text-white">
         <h2 className="font-serif text-3xl md:text-4xl mb-16 tracking-widest text-white">READ COLLECTIONS</h2>
 
-        <div className="flex flex-col md:flex-row gap-8 w-full max-w-5xl px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl px-4">
           {Object.values(COLLECTIONS).map((col) => (
             <button
               key={col.id}
@@ -179,7 +214,7 @@ export const Home: React.FC<HomeProps> = ({ onOpenCollection, onOpenPoem }) => {
             >
               <div className="flex items-center justify-between mb-4">
                 <span className="font-sans text-xs tracking-widest uppercase opacity-70 group-hover:opacity-100">
-                  {col.id === CollectionId.ONE ? 'Volume One' : 'Volume Two'}
+                  {VOLUME_LABELS[col.id]}
                 </span>
                 <Feather className="opacity-0 group-hover:opacity-100 transition-opacity" size={16} />
               </div>
